@@ -74,8 +74,9 @@ public class RocketLauncher : MonoBehaviour
         {
             Reload();
         }
-        //Reload automatically when trying to shoot without ammo
-        if(readyToShoot && shooting && !reloading && bulletsLeft <= 0)
+
+        //Reload automatically on 0 ammo
+        if(readyToShoot && !shooting && !reloading && bulletsLeft == 0)
         {
             Reload();
         }
