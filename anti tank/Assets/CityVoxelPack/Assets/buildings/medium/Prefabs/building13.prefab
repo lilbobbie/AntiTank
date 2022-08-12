@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2962194289247025290}
   - component: {fileID: 3546925271672735619}
   - component: {fileID: 1005364598026140729}
+  - component: {fileID: 4874058942482568456}
   m_Layer: 0
   m_Name: building19
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4874058942482568456
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3570766336980257874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 9062856631788795714, guid: 999c20881b737984c96a2e24763570fe, type: 3}
 --- !u!1 &6237842645293093905
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6974418922978977282}
   m_Layer: 0
-  m_Name: building19
+  m_Name: building13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4910606819819080081}
   - component: {fileID: 3332361598609337335}
   - component: {fileID: 7308738757995672132}
+  - component: {fileID: 4974117139253379722}
   m_Layer: 0
   m_Name: pavementCorner(3)1-5
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4974117139253379722
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258563137448042755}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4040469042760635993, guid: e36009eadf3d0e346ba04c0692f41d9b, type: 3}
 --- !u!1 &5168236983939922896
 GameObject:
   m_ObjectHideFlags: 0

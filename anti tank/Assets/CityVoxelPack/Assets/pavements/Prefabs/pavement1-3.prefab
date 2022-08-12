@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4207217909299967841}
   - component: {fileID: 9028993172294676063}
   - component: {fileID: 4386242548205808336}
+  - component: {fileID: 1403963308345592243}
   m_Layer: 0
   m_Name: pavement1-3
   m_TagString: Untagged
@@ -108,3 +109,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1403963308345592243
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918647902766395872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -3126311230224895012, guid: 7743d1401b120d24f90dda8743067622, type: 3}
