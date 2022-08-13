@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
+  hit: 0
 --- !u!65 &262990830
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -328,7 +329,6 @@ GameObject:
   - component: {fileID: 705521738}
   - component: {fileID: 705521737}
   - component: {fileID: 705521736}
-  - component: {fileID: 705521735}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -336,19 +336,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &705521735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705521734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c2b61b0e842a346b0d04bf92d491ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hit: 0
 --- !u!136 &705521736
 CapsuleCollider:
   m_ObjectHideFlags: 0
