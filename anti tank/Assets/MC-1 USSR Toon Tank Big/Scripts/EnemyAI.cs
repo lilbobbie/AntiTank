@@ -13,6 +13,9 @@ public class EnemyAI : MonoBehaviour
 
     public float health;
 
+    public GameObject projectile;
+    public float projectileSpeed;
+
     public bool damageTaken;
     public float invulnerabiltyTime;
 
@@ -99,7 +102,8 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Atack code here
-
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
