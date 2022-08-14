@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public enum GameState
@@ -94,5 +95,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(bullet);
         }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOver = false;
+        UpdateGameState(GameState.Play);
     }
 }
