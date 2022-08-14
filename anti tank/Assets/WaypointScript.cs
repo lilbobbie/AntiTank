@@ -42,4 +42,12 @@ public class WaypointScript : MonoBehaviour
         }
         transform.LookAt(waypoints[waypointIndex].position);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.UpdateGameState(GameState.GameOver);
+        }
+    }
 }
