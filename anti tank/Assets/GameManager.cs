@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GameState
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
 {
     public Canvas PauseMenu;
     public Canvas GameOverUI;
+    public TextMeshProUGUI ScoreUI;
+
+    public float score;
+
+    public bool gameOver = false;
     public bool gamePaused = false;
     private static GameManager _instance;
     public static GameManager Instance
@@ -33,6 +39,10 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         State = GameState.Play;
+    }
+    private void Update()
+    {
+        ScoreUI.text = "Score: " + score.ToString();
     }
 
     public void UpdateGameState(GameState newState)
@@ -57,10 +67,13 @@ public class GameManager : MonoBehaviour
 
     private void Pause()
     {
-        gamePaused = true;
-        Time.timeScale = 0f;
-        PauseMenu.gameObject.SetActive(true);
-        Debug.Log("Game paused");
+        if (!gameOver)
+        {
+            gamePaused = true;
+            Time.timeScale = 0f;
+            PauseMenu.gameObject.SetActive(true);
+            Debug.Log("Game paused");
+        }
     }
     private void Play()
     {
@@ -70,7 +83,16 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        gameOver = true;
         Time.timeScale = 0;
         GameOverUI.gameObject.SetActive(true);
+        GameObject.Find("ScoreEnd").GetComponent<TextMeshProUGUI>().text = "Your score: " + score.ToString();
+
+        //Destroy all remaining bullets to avoid explosion spamming
+        GameObject[] bulletList = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bulletList)
+        {
+            Destroy(bullet);
+        }
     }
 }
