@@ -1,5 +1,13 @@
 sceneSetups:
+<<<<<<< HEAD
+<<<<<<< HEAD
+- path: Assets/Scenes/ArduinoTest.unity
+=======
 - path: Assets/Scenes/Level1 Keyboard.unity
+>>>>>>> EnemyIntegration
+=======
+- path: Assets/Scenes/Level1 Keyboard.unity
+>>>>>>> main
   isLoaded: 1
   isActive: 1
   isSubScene: 0
