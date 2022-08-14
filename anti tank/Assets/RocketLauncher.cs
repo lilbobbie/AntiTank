@@ -82,7 +82,7 @@ public class RocketLauncher : MonoBehaviour
         }
 
         //Shooting
-        if(readyToShoot && shooting && !reloading && bulletsLeft > 0)
+        if(readyToShoot && shooting && !reloading && bulletsLeft > 0 && GameManager.Instance.State != GameState.Pause)
         {
             //Set bullets shot to 0
             bulletsShot = 0;
