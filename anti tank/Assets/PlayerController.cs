@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,10 +9,22 @@ public class PlayerController : MonoBehaviour
     public bool isDamaged;
     public float health;
     public float invulnerabilityTime;
+    public GameObject Healthbar;
 
     private void Update()
     {
-        
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.Instance.gamePaused)
+            {
+                GameManager.Instance.UpdateGameState(GameState.Play);
+            }
+            else
+            {
+                GameManager.Instance.UpdateGameState(GameState.Pause);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +40,11 @@ public class PlayerController : MonoBehaviour
         {
             isDamaged = true;
             health = health - damage;
+            Healthbar.GetComponent<Healthbar>().TakeDamage(damage);
+            if(health <= 0)
+            {
+                GameManager.Instance.UpdateGameState(GameState.GameOver);
+            }
             Invoke("ResetDamage", invulnerabilityTime);
         }
     }

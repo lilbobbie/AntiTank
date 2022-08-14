@@ -12,9 +12,11 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float health;
+    public int scorePoints;
 
     public GameObject projectile;
     public float projectileSpeed;
+    public Transform attackPoint;
 
     public bool damageTaken;
     public float invulnerabiltyTime;
@@ -97,18 +99,22 @@ public class EnemyAI : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        var lookPos = player.position;
+        lookPos.y = -10.5f;
+        transform.LookAt(lookPos);
 
         if (!alreadyAttacked)
         {
             //Atack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(projectile, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * projectileSpeed, ForceMode.Impulse);
+
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
@@ -120,6 +126,7 @@ public class EnemyAI : MonoBehaviour
         gameObject.GetComponentInChildren<Healthbar>().TakeDamage(damage);
         if(health == 0)
         {
+            GameManager.Instance.score += scorePoints;
             Invoke(nameof(DestroyEnemy), .5f);
         }
     }
