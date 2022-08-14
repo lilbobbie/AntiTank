@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Level1 Keyboard.unity
+=======
+- path: Assets/Scenes/ArduinoTest.unity
+>>>>>>> main
   isLoaded: 1
   isActive: 1
   isSubScene: 0
