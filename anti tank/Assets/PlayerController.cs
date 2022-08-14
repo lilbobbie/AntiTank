@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isDamaged)
         {
-            
+            GetComponent<ArduinoMovement>().HitSound();
             isDamaged = true;
             health = health - damage;
             Healthbar.GetComponent<Healthbar>().TakeDamage(damage);
