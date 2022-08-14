@@ -125,6 +125,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void DestroyEnemy()
     {
+        EnemySpawn.Instance.currentSpawns--; 
         Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
