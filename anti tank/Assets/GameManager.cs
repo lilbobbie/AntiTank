@@ -105,4 +105,8 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         UpdateGameState(GameState.Play);
     }
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
