@@ -21,7 +21,6 @@ public class VRGaze : MonoBehaviour
         {
             gvrTimer += Time.deltaTime;
             imgGaze.fillAmount = gvrTimer / totalTime;
-            StartCoroutine(Attack(totalTime));
         }
     }
 
@@ -29,6 +28,7 @@ public class VRGaze : MonoBehaviour
     {
         Debug.Log("GVR is ON");
         gvrStatus = true;
+        StartCoroutine(Attack(totalTime));
     }
     public void GVROff()
     {
@@ -41,7 +41,7 @@ public class VRGaze : MonoBehaviour
     private IEnumerator Attack(float time)
     {
         yield return new WaitForSeconds(time);
-        if (GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().readyToShoot && !GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().reloading && GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().bulletsLeft > 0 && GameManager.Instance.State != GameState.Pause)
+        if (GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().readyToShoot && !GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().reloading && GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().bulletsLeft > 0 && GameManager.Instance.State != GameState.Pause && gvrStatus)
         {
             GameObject.FindGameObjectWithTag("Weapon").GetComponent<RocketLauncher>().Shoot();
         }
