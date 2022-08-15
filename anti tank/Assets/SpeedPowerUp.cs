@@ -8,8 +8,11 @@ public class SpeedPowerUp : MonoBehaviour
     public int powerUpDuration;
     public float speed;
     public Vector3 direction;
-    public Transform seekTarget;
-    public float fleeDistance = 5;
+    public Transform fleeFrom;
+    public float fleeDistance = 5f;
+    public float wanderRadius = 3f;
+    public UnityEngine.AI.NavMeshAgent agent;
+    private Vector3 wanderPoint;
 
     float preTBS;
     float preRT;
@@ -19,18 +22,18 @@ public class SpeedPowerUp : MonoBehaviour
         preRT = weapon.GetComponent<RocketLauncher>().reloadTime;
     }
 
-    private void Update()
+    void Update()
     {
-        if (Vector3.Distance(transform.position, seekTarget.position) < fleeDistance)
+        if (Vector3.Distance(transform.position, fleeFrom.position) < fleeDistance)
         {
-            Vector3 newDirection = transform.position - seekTarget.position;
+            Vector3 newDirection = transform.position - fleeFrom.position;
             newDirection = new Vector3(newDirection.x, 0, newDirection.z);
             newDirection = newDirection.normalized;
             direction = newDirection;
         }
         else
         {
-            direction = Vector3.zero;
+            Wander();
         }
         transform.position += speed * direction * Time.deltaTime;
     }
@@ -44,4 +47,27 @@ public class SpeedPowerUp : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void Wander() 
+    {
+        wanderPoint = RandomWanderPoint();
+        if (Vector3.Distance(transform.position, wanderPoint) < 10f)
+        {
+            wanderPoint = RandomWanderPoint();
+        }
+        else
+        {
+            agent.SetDestination(wanderPoint); 
+        }
+    } 
+
+    public Vector3 RandomWanderPoint()
+    {
+        Vector3 randomPoint = (Random.insideUnitSphere * wanderRadius) + transform.position;
+        UnityEngine.AI.NavMeshHit navHit;
+        UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out navHit, wanderRadius, -1);
+        return new Vector3(navHit.position.x, transform.position.y, navHit.position.z);
+    }
+
+
 }
