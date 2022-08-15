@@ -44,6 +44,5 @@ public class PowerUpManager : MonoBehaviour
         Debug.Log("ResetWeapon called");
         weapon.GetComponent<RocketLauncher>().timeBetweenShooting = preTBS;
         weapon.GetComponent<RocketLauncher>().reloadTime = preRT;
-        GameObject.Destroy(this.gameObject);
     }
 }

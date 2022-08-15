@@ -44,7 +44,7 @@ public class SpeedPowerUp : MonoBehaviour
         {
             PowerUpManager.Instance.StartCoroutine(PowerUpManager.Instance.PowerUp(powerUpDuration));
 
-            Destroy(this.gameObject);
+            GameObject.Destroy(this.gameObject);
         }
     }
 

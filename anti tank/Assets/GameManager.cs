@@ -41,6 +41,13 @@ public class GameManager : MonoBehaviour
         _instance = this;
         State = GameState.Play;
     }
+
+    private void Start()
+    {
+        _instance = this;
+        State = GameState.Play;
+    }
+
     private void Update()
     {
         ScoreUI.text = "Score: " + score.ToString();
@@ -80,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         gamePaused = false;
         PauseMenu.gameObject.SetActive(false);
+        GameOverUI.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
     private void GameOver()
@@ -96,8 +104,14 @@ public class GameManager : MonoBehaviour
             Destroy(bullet);
         }
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+
+        if(SceneManager.GetActiveScene().name == "Level1 GVR Android APK")
+        {
+            GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 100);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerWalk>().playerSpeed = 0;
+        }
     }
     public void RestartLevel()
     {
