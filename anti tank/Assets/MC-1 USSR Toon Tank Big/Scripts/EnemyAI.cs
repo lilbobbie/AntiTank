@@ -159,15 +159,15 @@ public class EnemyAI : MonoBehaviour
         damageTaken = false;
     }
 
-    public void OnMouseOver()
+    /**public void OnMouseOver()
     {
-        GameObject.Find("Player").GetComponent<VRGaze>().GVROn();
+        GameObject.FindWithTag("Player").GetComponent<VRGaze>().GVROn();
     }
 
     public void OnMouseExit()
     {
-        GameObject.Find("Player").GetComponent<VRGaze>().GVROff();
-    }
+        GameObject.FindWithTag("Player").GetComponent<VRGaze>().GVROff();
+    }**/
 
     private void OnDrawGizmosSelected()
     {

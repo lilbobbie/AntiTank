@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class VRGaze : MonoBehaviour
 {
@@ -22,13 +23,26 @@ public class VRGaze : MonoBehaviour
             gvrTimer += Time.deltaTime;
             imgGaze.fillAmount = gvrTimer / totalTime;
         }
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 200) && hit.transform.tag == "Enemy")
+        {
+            GVROn();
+        }
+        else
+        {
+            GVROff();
+        }
     }
 
     public void GVROn()
     {
         Debug.Log("GVR is ON");
         gvrStatus = true;
-        StartCoroutine(Attack(totalTime));
+        if(GameManager.Instance.State == GameState.Play)
+        {
+            StartCoroutine(Attack(totalTime));
+        }
     }
     public void GVROff()
     {

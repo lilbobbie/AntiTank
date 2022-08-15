@@ -8,17 +8,18 @@ public class PlayerWalk : MonoBehaviour
 
     public bool isLookingAtEnemy;
     public GameObject enemy;
+    
 
     private void Update()
     {
         // move without pressing anything
         if (!GetComponent<VRGaze>().gvrStatus)
         {
-            Walk();
+            transform.position = transform.position + Camera.main.transform.forward * playerSpeed * Time.deltaTime;
         }
         if (GetComponent<VRGaze>().gvrStatus)
         {
-            StopWalk();
+            transform.position = transform.position;
         }
         // transform.position = transform.position + Camera.main.transform.forward * playerSpeed * Time.deltaTime;
 
@@ -28,14 +29,5 @@ public class PlayerWalk : MonoBehaviour
         }**/
 
 
-    }
-    private void Walk()
-    {
-        transform.position = transform.position + Camera.main.transform.forward * playerSpeed * Time.deltaTime;
-    }
-
-    private void StopWalk()
-    {
-        transform.position = transform.position;
     }
 }
