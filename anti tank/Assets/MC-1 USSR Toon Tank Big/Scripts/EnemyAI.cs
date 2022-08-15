@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -132,7 +133,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void DestroyEnemy()
     {
-        EnemySpawn.Instance.currentSpawns--; 
+        EnemySpawn.Instance.currentSpawns--;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<VRGaze>().GVROff();
         Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
@@ -157,6 +159,15 @@ public class EnemyAI : MonoBehaviour
         damageTaken = false;
     }
 
+    public void OnMouseOver()
+    {
+        GameObject.Find("Player").GetComponent<VRGaze>().GVROn();
+    }
+
+    public void OnMouseExit()
+    {
+        GameObject.Find("Player").GetComponent<VRGaze>().GVROff();
+    }
 
     private void OnDrawGizmosSelected()
     {

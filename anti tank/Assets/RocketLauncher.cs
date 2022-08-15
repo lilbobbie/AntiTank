@@ -15,14 +15,15 @@ public class RocketLauncher : MonoBehaviour
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public int bulletsLeft, bulletsShot;
 
     //recoil
     public Rigidbody playerRb;
     public float recoilForce;
 
     //bools
-    bool shooting, readyToShoot, reloading;
+    public bool shooting, reloading;
+    public bool readyToShoot;
 
     //reference
     public Camera fpsCam;
@@ -91,7 +92,7 @@ public class RocketLauncher : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         readyToShoot = false;
 
@@ -156,7 +157,7 @@ public class RocketLauncher : MonoBehaviour
         }
     }
 
-    private void ResetShot()
+    public void ResetShot()
     {
         readyToShoot = true;
         allowInvoke = true;
