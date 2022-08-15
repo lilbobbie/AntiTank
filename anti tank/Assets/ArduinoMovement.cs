@@ -13,7 +13,7 @@ public class ArduinoMovement : MonoBehaviour
 	void Start()
 	{
 		sp.Open();
-		sp.ReadTimeout = 200;
+		sp.ReadTimeout = 25;
 
 	}
 
@@ -24,24 +24,7 @@ public class ArduinoMovement : MonoBehaviour
 		{
 			try
 			{
-				if (sp.ReadByte() == 1)
-				{
-					transform.Translate(Vector3.forward * Time.deltaTime * walkSpeed);
-				}
-				if (sp.ReadByte() == 2)
-				{
-					transform.Translate(Vector3.left * Time.deltaTime * walkSpeed);
-				}
-				if (sp.ReadByte() == 3)
-				{
-					transform.Translate(Vector3.back * Time.deltaTime * walkSpeed);
-				}
-				if (sp.ReadByte() == 4)
-				{
-					transform.Translate(Vector3.right* Time.deltaTime * walkSpeed);
-				}
-				
-				
+				Movement();
 			}
 			catch (System.Exception)
 			{
@@ -77,5 +60,30 @@ public class ArduinoMovement : MonoBehaviour
 			default:
 				break;
 		}
+	}
+
+	public void Movement()
+    {
+		if(sp.ReadByte() == 1)
+				{
+			transform.Translate(Vector3.forward + Camera.main.transform.forward * Time.deltaTime * walkSpeed);
+			Debug.Log("Forward");
+		}
+		if (sp.ReadByte() == 2)
+		{
+			transform.Translate(Vector3.left - Camera.main.transform.right * Time.deltaTime * walkSpeed);
+			Debug.Log("Left");
+		}
+		if (sp.ReadByte() == 3)
+		{
+			transform.Translate(Vector3.back - Camera.main.transform.forward* Time.deltaTime * walkSpeed);
+			Debug.Log("Back");
+		}
+		if (sp.ReadByte() == 4)
+		{
+			transform.Translate(Vector3.right + Camera.main.transform.right  * Time.deltaTime * walkSpeed);
+			Debug.Log("Right");
+		}
+
 	}
 }
