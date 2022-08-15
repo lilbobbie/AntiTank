@@ -15,7 +15,7 @@ public class RocketLauncher : MonoBehaviour
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public  int bulletsLeft, bulletsShot;
 
     //recoil
     public Rigidbody playerRb;
@@ -48,7 +48,7 @@ public class RocketLauncher : MonoBehaviour
     private void Update()
     {
         MyInput();
-       
+       GameObject.Find("Player").GetComponent<ArduinoMovement>().AmmoLed(bulletsLeft);
 
         //Set ammo display, if it exists
         if(ammunitionDisplay != null)
@@ -135,7 +135,7 @@ public class RocketLauncher : MonoBehaviour
         {
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
         }
-
+        
         bulletsLeft--;
         bulletsShot++;
 
@@ -148,12 +148,13 @@ public class RocketLauncher : MonoBehaviour
             //Add recoil to player
             playerRb.AddForce(-directionWithSpread.normalized * recoilForce, ForceMode.Impulse);
         }
-
+        
         //if more than one bulletsPerTap make sure to repeat shoot function
         if(bulletsShot < bulletsPerTap && bulletsLeft > 0)
         {
             Invoke("Shoot", timeBetweenShots);
         }
+        
     }
 
     private void ResetShot()

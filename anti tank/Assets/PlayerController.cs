@@ -36,9 +36,10 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        GetComponent<ArduinoMovement>().HitSound();
         if (!isDamaged)
         {
-            GetComponent<ArduinoMovement>().HitSound();
+            
             isDamaged = true;
             health = health - damage;
             Healthbar.GetComponent<Healthbar>().TakeDamage(damage);
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.UpdateGameState(GameState.GameOver);
             }
             Invoke("ResetDamage", invulnerabilityTime);
+            
         }
     }
     private void ResetDamage()
